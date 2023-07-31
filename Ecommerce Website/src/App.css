@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;600&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* text-align: center; */
+  font-family: "Kanit", sans-serif;
+}
+
+.heroImgContainer {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/landImg.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
