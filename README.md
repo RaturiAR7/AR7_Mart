@@ -19,7 +19,7 @@ AR7 Mart is a front-end clone of an E-commerce website developed using React.js.
 
 
 # Getting Started with this project
-1. CLone this project.
+1. Clone this project.
 2. Open terminal and write npm install. This will install all dependencies and libraries.
 3. Run command npm run dev.
 4. A link will appear shortly in the terminal.
