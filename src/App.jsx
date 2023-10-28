@@ -14,6 +14,7 @@ import LogIn from "./LogIn";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
+import Auth from "./Auth";
 
 const HeroLazy = lazy(() => import("./Hero"));
 
@@ -73,12 +74,16 @@ function App() {
 
   const notifyOrderPlaced = () => toast("Order Placed Successfully");
   return (
-    <div className="box-border relative">
+    <div className='box-border relative'>
       {location.pathname != "/login" && (
-        <Navbar category={category} setCategory={setCategory} />
+        <Navbar
+          category={category}
+          setCategory={setCategory}
+          loggedIn={loggedIn}
+        />
       )}
       <ToastContainer
-        position="top-center"
+        position='top-center'
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -87,11 +92,11 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme='dark'
       />
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             // <Hero
             //   category={category}
@@ -109,9 +114,12 @@ function App() {
             </Suspense>
           }
         />
-        <Route path="/login" element={<LogIn setLoggedIn={setLoggedIn} />} />
         <Route
-          path="/cart"
+          path='/login'
+          element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+        />
+        <Route
+          path='/cart'
           element={
             <Cart
               deleteFromCart={deleteFromCart}
@@ -121,7 +129,7 @@ function App() {
           }
         />
         <Route
-          path="/search"
+          path='/search'
           element={
             <SearchPage
               category={category}
@@ -132,7 +140,7 @@ function App() {
           }
         />
         <Route
-          path="/details"
+          path='/details'
           element={
             <DetailPage
               detail={detail}
@@ -143,12 +151,12 @@ function App() {
           }
         />
         <Route
-          path="/allProducts"
+          path='/allProducts'
           element={<ProductsPage setDetail={setDetail} />}
         />
-        <Route path="/contact" element={<Contact notifyMail={notifyMail} />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="*" element={<h1>404 Page Not Found</h1>} />
+        <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
+        <Route path='/about' element={<AboutUs />} />
+        <Route path='*' element={<h1>404 Page Not Found</h1>} />
       </Routes>
       {location.pathname != "/login" && <Footer />}
     </div>
