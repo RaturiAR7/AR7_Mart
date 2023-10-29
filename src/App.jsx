@@ -176,25 +176,24 @@ function App() {
               addToCart={addToCart}
               setDetail={setDetail}
               setCategory={setCategory}
+              products={products}
             />
           }
         />
         <Route
-          path='/details'
+          path='/details/:productId'
           element={
             <DetailPage
-              detail={detail}
-              setDetail={setDetail}
               addToCart={addToCart}
               orderPlaced={orderPlaced}
               products={products}
             />
           }
         />
-        <Route
+        {/* <Route
           path='/allProducts'
-          element={<ProductsPage setDetail={setDetail} />}
-        />
+          element={<ProductsPage setDetail={setDetail} products={products} />}
+        /> */}
         <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='*' element={<h1>404 Page Not Found</h1>} />

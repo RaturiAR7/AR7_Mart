@@ -117,7 +117,7 @@ const Hero = ({ category, setCategory, setDetail, notifyMail, products }) => {
           );
         })}
       </div>
-      <ProductsPage setDetail={setDetail} />
+      <ProductsPage setDetail={setDetail} products={products} />
     </div>
   );
 };
