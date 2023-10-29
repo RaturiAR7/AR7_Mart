@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import siteLogo from "./assets/logo-no-background.png";
-const Navbar = ({ category, setCategory, loggedIn }) => {
+const Navbar = ({ category, setCategory, loggedIn, uid }) => {
   const [searchValue, setSearchValue] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setSearchValue(e.target.value);
   };
-  const cartClickHandler = () => {
-    navigate("/cart");
-  };
+  // const cartClickHandler = () => {
+  //   navigate("/cart");
+  // };
   const menuOnClickHandler = () => {};
   const onClickHandler = (e) => {
     e.preventDefault();
@@ -137,12 +137,16 @@ const Navbar = ({ category, setCategory, loggedIn }) => {
                     Go
                   </button>
                 </form>
-                <div
-                  className='cartIcon flex w-8 md:w-16 md:m-4 m-1 hover:scale-110'
-                  onClick={cartClickHandler}
-                >
-                  <img className='w-10' src='./cart.png' alt='' id='cartImg' />
-                </div>
+                <Link to={`/cart/${uid}`}>
+                  <div className='cartIcon flex w-8 md:w-16 md:m-4 m-1 hover:scale-110'>
+                    <img
+                      className='w-10'
+                      src='./cart.png'
+                      alt=''
+                      id='cartImg'
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

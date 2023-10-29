@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { products } from "./assets/products";
 import { useEffect, useState } from "react";
 
-const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
+const SearchPage = ({
+  category,
+  addToCart,
+  setDetail,
+  setCategory,
+  products,
+}) => {
   const navigate = useNavigate();
 
   const [sliderValue, setSliderValue] = useState(1000000);
@@ -42,35 +47,35 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
   };
 
   return (
-    <div className="search h-full w-full">
+    <div className='search h-full w-full'>
       {scrollToTop()}
-      <h1 className="text-center font-extrabold text-4xl">
+      <h1 className='text-center font-extrabold text-4xl'>
         Your Search Result
       </h1>
-      <div className="SearchResult h-full md:grid md:grid-flow-col  gap-10">
-        <div className="filters m-3 w-40 shadow-md">
-          <form action="" className="flex flex-col">
-            <label className="text-center text-lg" htmlFor="myRange">
+      <div className='SearchResult h-full md:grid md:grid-flow-col  gap-10'>
+        <div className='filters m-3 w-40 shadow-md'>
+          <form action='' className='flex flex-col'>
+            <label className='text-center text-lg' htmlFor='myRange'>
               Filter By Price:
             </label>
 
             <input
-              type="range"
+              type='range'
               min={minSliderValue}
               max={maxSliderValue}
               value={sliderValue}
-              className="slider"
-              id="myRange"
+              className='slider'
+              id='myRange'
               onInput={handleSliderChange}
             />
             <span>₹{sliderValue}</span>
-            <h2 className="mt-10 text-center text-lg">Categories</h2>
-            <div className="categories">
+            <h2 className='mt-10 text-center text-lg'>Categories</h2>
+            <div className='categories'>
               <span>Electronics</span>
               <input
-                type="radio"
-                name="category"
-                className="mt-4"
+                type='radio'
+                name='category'
+                className='mt-4'
                 onInput={() => {
                   setCategory("electronic");
                 }}
@@ -78,8 +83,8 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
               <br />
               <span>Sports</span>
               <input
-                type="radio"
-                name="category"
+                type='radio'
+                name='category'
                 onInput={() => {
                   setCategory("sport");
                 }}
@@ -88,8 +93,8 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
               <span>Laptops</span>
 
               <input
-                type="radio"
-                name="category"
+                type='radio'
+                name='category'
                 onInput={() => {
                   setCategory("laptop");
                 }}
@@ -97,8 +102,8 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
               <br />
               <span>Clothing</span>
               <input
-                type="radio"
-                name="category"
+                type='radio'
+                name='category'
                 onInput={() => {
                   setCategory("clothing");
                 }}
@@ -106,8 +111,8 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
               <br />
               <span>Mobile Phone</span>
               <input
-                type="radio"
-                name="category"
+                type='radio'
+                name='category'
                 onInput={() => {
                   setCategory("mobile phone");
                 }}
@@ -115,7 +120,7 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
             </div>
           </form>
         </div>
-        <div className="grid md:grid-cols-3">
+        <div className='grid md:grid-cols-3'>
           {products.map((Element) => {
             if (
               (Element.title.toUpperCase().includes(category.toUpperCase()) ||
@@ -127,14 +132,14 @@ const SearchPage = ({ category, addToCart, setDetail, setCategory }) => {
               return (
                 <div
                   key={Element.id}
-                  className="productList m-10 hover:shadow-2xl items-center flex flex-col"
+                  className='productList m-10 hover:shadow-2xl items-center flex flex-col'
                   onClick={() => onClickDetail(Element)}
                 >
-                  <img className="w-72 h-60" src={Element.image} alt="" />
-                  <h2 className="text-center text-xl font-semibold">
+                  <img className='w-72 h-60' src={Element.image} alt='' />
+                  <h2 className='text-center text-xl font-semibold'>
                     {Element.title}
                   </h2>
-                  <h4 className="text-center">
+                  <h4 className='text-center'>
                     <strong> Price:</strong>₹{Element.price}
                   </h4>
                 </div>

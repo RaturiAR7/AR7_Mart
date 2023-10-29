@@ -1,20 +1,7 @@
 import "./App.css";
-// import { products } from "./assets/products";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-const ProductsPage = ({ setDetail, products }) => {
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const url = "https://fakestoreapi.com/products";
-  // const dataFetch = async () => {
-  //   const data = await (await fetch(url)).json();
-  //   setData(data);
-  //   console.log(data);
-  // };
-  //   dataFetch();
-  // }, []);
+import { useState } from "react";
+const ProductsPage = ({ products }) => {
   return (
     <div className='productsPage text-center w-full'>
       <h1 className='text-5xl font-extrabold mt-4 mb-14'>Products</h1>
@@ -25,10 +12,6 @@ const ProductsPage = ({ setDetail, products }) => {
               <div
                 key={product.id}
                 className='productList p-10 flex flex-col justify-center items-center'
-                // onClick={() => {
-                //   setDetail(product);
-                //   navigate("/details");
-                // }}
               >
                 <img
                   className='h-1/2 hover:scale-105'

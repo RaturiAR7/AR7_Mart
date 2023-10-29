@@ -45,28 +45,9 @@ function App() {
     }
     return arr;
   };
-  const getCart = async () => {
-    const cartArray = [];
-    const path = `cart-${uid}`;
-    try {
-      const cartItems = await getDocs(collection(db, path));
-      cartItems.forEach((doc) => {
-        cartArray.push({ ...doc.data(), id: doc.id });
-      });
-      setCart(cartArray);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  console.log(cart);
-
   useEffect(() => {
     fetchProducts();
   }, []);
-  useEffect(() => {
-    fetchProducts();
-    getCart();
-  }, [uid]);
   const addToCart = (item) => {
     if (loggedIn) {
       addDoc(collection(db, `cart-${uid}`), {
@@ -74,7 +55,6 @@ function App() {
         item: item,
       });
       notifyAddToCart();
-      getCart();
     } else {
       notifyAddToCart();
       navigate("/login");
@@ -111,6 +91,7 @@ function App() {
           category={category}
           setCategory={setCategory}
           loggedIn={loggedIn}
+          uid={uid}
         />
       )}
       <ToastContainer
@@ -129,12 +110,6 @@ function App() {
         <Route
           path='/'
           element={
-            // <Hero
-            //   category={category}
-            //   setCategory={setCategory}
-            //   setDetail={setDetail}
-
-            // />
             <Suspense fallback={<h1>Loading...</h1>}>
               {products.length > 0 && (
                 <HeroLazy
@@ -159,7 +134,7 @@ function App() {
           }
         />
         <Route
-          path='/cart'
+          path='/cart/:cartId'
           element={
             <Cart
               deleteFromCart={deleteFromCart}

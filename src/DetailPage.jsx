@@ -3,18 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "./config/firebase";
 
-const DetailPage = ({
-  detail,
-  setDetail,
-  addToCart,
-  orderPlaced,
-  products,
-}) => {
+const DetailPage = ({ addToCart, orderPlaced, products }) => {
   const [product, setProduct] = useState({});
   const { productId } = useParams();
-  parseInt(productId);
   const getProduct = async () => {
-    const books = [];
+    const arr = [];
     const q = query(
       collection(db, "products"),
       where("pid", "==", parseInt(productId))
@@ -22,9 +15,9 @@ const DetailPage = ({
     try {
       const snapshot = await getDocs(q);
       snapshot.forEach((doc) => {
-        books.push({ ...doc.data(), id: doc.id });
+        arr.push({ ...doc.data(), id: doc.id });
       });
-      setProduct(books);
+      setProduct(arr);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -33,9 +26,7 @@ const DetailPage = ({
   useEffect(() => {
     getProduct();
   }, [productId]);
-  const onClickDetail = (product) => {
-    setDetail((prev) => product);
-  };
+
   const scrollToTop = () => {
     return window.scrollTo({
       top: 0,
@@ -59,12 +50,14 @@ const DetailPage = ({
             <p>
               <strong>Price:</strong>₹{product[0].price}
             </p>
-            <button
-              className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
-              onClick={() => addToCart(product[0])}
-            >
-              Add to cart
-            </button>
+            <Link>
+              <button
+                className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
+                onClick={() => addToCart(product[0])}
+              >
+                Add to cart
+              </button>
+            </Link>
             <button
               className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
               onClick={orderPlaced}

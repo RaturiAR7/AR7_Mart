@@ -1,4 +1,28 @@
-const Cart = ({ cart, deleteFromCart, orderPlaced }) => {
+import { collection, getDocs } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { db } from "./config/firebase";
+
+const Cart = ({ deleteFromCart, orderPlaced }) => {
+  const { cartId } = useParams();
+  const [cart, setCart] = useState([]);
+
+  const getProduct = async () => {
+    const arr = [];
+    try {
+      const snapshot = await getDocs(collection(db, `cart-${cartId}`));
+      snapshot.forEach((doc) => {
+        arr.push({ ...doc.data(), id: doc.id });
+      });
+      setCart(arr);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    getProduct();
+  }, []);
+
   return (
     <div className='cart flex flex-col items-center h-full'>
       <h1 className='text-5xl font-extrabold m-5'>Your Cart</h1>
