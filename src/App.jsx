@@ -15,7 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import Auth from "./Auth";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "./config/firebase";
 
 const HeroLazy = lazy(() => import("./Hero"));
@@ -45,16 +45,36 @@ function App() {
     }
     return arr;
   };
+  const getCart = async () => {
+    const cartArray = [];
+    const path = `cart-${uid}`;
+    try {
+      const cartItems = await getDocs(collection(db, path));
+      cartItems.forEach((doc) => {
+        cartArray.push({ ...doc.data(), id: doc.id });
+      });
+      setCart(cartArray);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(cart);
+
   useEffect(() => {
     fetchProducts();
   }, []);
-  console.log(products);
-  const addToCart = (id) => {
+  useEffect(() => {
+    fetchProducts();
+    getCart();
+  }, [uid]);
+  const addToCart = (item) => {
     if (loggedIn) {
-      if (!cart.includes(id)) {
-        setCart((prevItems) => [...prevItems, Number(id)]);
-        notifyAddToCart();
-      }
+      addDoc(collection(db, `cart-${uid}`), {
+        uid: uid,
+        item: item,
+      });
+      notifyAddToCart();
+      getCart();
     } else {
       notifyAddToCart();
       navigate("/login");
