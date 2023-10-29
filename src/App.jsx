@@ -144,16 +144,8 @@ function App() {
           }
         />
         <Route
-          path='/search'
-          element={
-            <SearchPage
-              category={category}
-              addToCart={addToCart}
-              setDetail={setDetail}
-              setCategory={setCategory}
-              products={products}
-            />
-          }
+          path='/search/:category'
+          element={products.length > 0 && <SearchPage products={products} />}
         />
         <Route
           path='/details/:productId'

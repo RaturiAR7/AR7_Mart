@@ -1,15 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const SearchPage = ({
-  category,
-  addToCart,
-  setDetail,
-  setCategory,
-  products,
-}) => {
+const SearchPage = ({ products }) => {
   const navigate = useNavigate();
-
+  const { category } = useParams();
   const [sliderValue, setSliderValue] = useState(1000000);
   const [maxSliderValue, setMaxSliderValue] = useState(1000000);
   const [minSliderValue, setMinSliderValue] = useState(1);
@@ -71,32 +65,32 @@ const SearchPage = ({
             <span>₹{sliderValue}</span>
             <h2 className='mt-10 text-center text-lg'>Categories</h2>
             <div className='categories'>
-              <span>Electronics</span>
+              <span>Electronic</span>
               <input
                 type='radio'
                 name='category'
                 className='mt-4'
-                onInput={() => {
-                  setCategory("electronic");
+                onInput={(e) => {
+                  navigate("/search/Electronic");
                 }}
               />
               <br />
-              <span>Sports</span>
+              <span>Sport</span>
               <input
                 type='radio'
                 name='category'
                 onInput={() => {
-                  setCategory("sport");
+                  navigate("/search/Sport");
                 }}
               />
               <br />
-              <span>Laptops</span>
+              <span>Laptop</span>
 
               <input
                 type='radio'
                 name='category'
                 onInput={() => {
-                  setCategory("laptop");
+                  navigate("/search/Laptop");
                 }}
               />
               <br />
@@ -105,7 +99,7 @@ const SearchPage = ({
                 type='radio'
                 name='category'
                 onInput={() => {
-                  setCategory("clothing");
+                  navigate("/search/Clothing");
                 }}
               />
               <br />
@@ -114,7 +108,7 @@ const SearchPage = ({
                 type='radio'
                 name='category'
                 onInput={() => {
-                  setCategory("mobile phone");
+                  navigate("/search/Mobile Phone");
                 }}
               />
             </div>
@@ -130,19 +124,20 @@ const SearchPage = ({
               sliderValue >= Element.price
             ) {
               return (
-                <div
-                  key={Element.id}
-                  className='productList m-10 hover:shadow-2xl items-center flex flex-col'
-                  onClick={() => onClickDetail(Element)}
-                >
-                  <img className='w-72 h-60' src={Element.image} alt='' />
-                  <h2 className='text-center text-xl font-semibold'>
-                    {Element.title}
-                  </h2>
-                  <h4 className='text-center'>
-                    <strong> Price:</strong>₹{Element.price}
-                  </h4>
-                </div>
+                <Link to={`/details/${Element.pid}`}>
+                  <div
+                    key={Element.id}
+                    className='productList m-10 hover:shadow-2xl items-center flex flex-col'
+                  >
+                    <img className='w-72 h-60' src={Element.image} alt='' />
+                    <h2 className='text-center text-xl font-semibold'>
+                      {Element.title}
+                    </h2>
+                    <h4 className='text-center'>
+                      <strong> Price:</strong>₹{Element.price}
+                    </h4>
+                  </div>
+                </Link>
               );
             }
           })}
