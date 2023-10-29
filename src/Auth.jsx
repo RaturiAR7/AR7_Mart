@@ -27,7 +27,7 @@ const Auth = ({ loggedIn, setLoggedIn, setUid }) => {
       });
       setUid(user.user.uid);
       setLoggedIn(true);
-      localStorage.setItem("loggedIn", true);
+      localStorage.setItem({ loggedIn: true });
       navigate("/");
     } catch (err) {
       console.error(err);
