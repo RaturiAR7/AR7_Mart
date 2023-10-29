@@ -1,6 +1,10 @@
-import { products } from "./assets/products";
-
-const DetailPage = ({ detail, setDetail, addToCart, orderPlaced }) => {
+const DetailPage = ({
+  detail,
+  setDetail,
+  addToCart,
+  orderPlaced,
+  products,
+}) => {
   const onClickDetail = (product) => {
     setDetail((prev) => product);
   };
@@ -29,7 +33,7 @@ const DetailPage = ({ detail, setDetail, addToCart, orderPlaced }) => {
           </p>
           <button
             className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
-            onClick={() => addToCart(detail.id)}
+            onClick={() => addToCart(detail)}
           >
             Add to cart
           </button>

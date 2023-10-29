@@ -160,6 +160,7 @@ function App() {
               setDetail={setDetail}
               addToCart={addToCart}
               orderPlaced={orderPlaced}
+              products={products}
             />
           }
         />
