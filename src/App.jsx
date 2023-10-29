@@ -22,6 +22,7 @@ const HeroLazy = lazy(() => import("./Hero"));
 
 function App() {
   ////States
+  const [uid, setUid] = useState("");
   const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -129,7 +130,13 @@ function App() {
         />
         <Route
           path='/login'
-          element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          element={
+            <Auth
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+              setUid={setUid}
+            />
+          }
         />
         <Route
           path='/cart'

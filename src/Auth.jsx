@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { auth, googleProvider } from "../src/config/firebase";
+import { auth, db, googleProvider } from "../src/config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
-const Auth = ({ loggedIn, setLoggedIn }) => {
+const Auth = ({ loggedIn, setLoggedIn, setUid }) => {
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -15,7 +17,15 @@ const Auth = ({ loggedIn, setLoggedIn }) => {
   console.log(auth?.currentUser?.email);
   const signIn = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      addDoc(collection(db, "users"), {
+        cart: 0,
+        email: email,
+        password: password,
+        username: userName,
+        uid: user.user.uid,
+      });
+      setUid(user.user.uid);
       setLoggedIn(true);
       localStorage.setItem("loggedIn", true);
       navigate("/");
@@ -27,7 +37,15 @@ const Auth = ({ loggedIn, setLoggedIn }) => {
   };
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const user = await signInWithPopup(auth, googleProvider);
+      addDoc(collection(db, "users"), {
+        cart: 0,
+        email: user.user.email,
+        password: "",
+        username: user.user.displayName,
+        uid: user.user.uid,
+      });
+      setUid(user.user.uid);
       setLoggedIn(true);
       localStorage.setItem("loggedIn", true);
       navigate("/");
@@ -50,18 +68,19 @@ const Auth = ({ loggedIn, setLoggedIn }) => {
           autoComplete='off'
           className='flex flex-col items-center  bg-slate-100 w-96 md:w-1/2 lg:w-1/3 justify-center'
         > */}
-        {/* <div className='name'>
-            <label htmlFor='Name'>User Name :</label>
-            <input
-              autoComplete='off'
-              className='my-10 ml-5'
-              type='text'
-              id='Name'
-              name='name'
-              placeholder='Enter Your Name'
-              onChange={formChangeHandler}
-            />
-          </div> */}
+        <div className='name'>
+          <label htmlFor='Name'>User Name :</label>
+          <input
+            autoComplete='off'
+            className='my-10 ml-5'
+            type='text'
+            id='Name'
+            name='name'
+            value={userName}
+            placeholder='Enter Your Name'
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
         <div className='email'>
           <label htmlFor='Email'>Enter Your Email :</label>
           <input
