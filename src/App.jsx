@@ -15,29 +15,39 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import Auth from "./Auth";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "./config/firebase";
 
 const HeroLazy = lazy(() => import("./Hero"));
 
 function App() {
-  // useEffect(() => {
-  //   const url = "https://dummyjson.com/products";
-  //   const dataFetch = async () => {
-  //     const data = await (await fetch(url)).json();
-  //     setProducts(data.products);
-  //     // console.log(data.products);
-  //   };
-  //   dataFetch();
-  // }, []);
-
   ////States
   const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [detail, setDetail] = useState({});
+  const [products, setProducts] = useState([]);
   /////React Router
   const navigate = useNavigate();
   let location = useLocation();
   //////Functions
+  const fetchProducts = async () => {
+    const arr = [];
+    try {
+      const data = await getDocs(collection(db, "products"));
+      data.forEach((doc) => {
+        arr.push({ ...doc.data(), id: doc.id });
+      });
+      setProducts(arr);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    return arr;
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+  console.log(products);
   const addToCart = (id) => {
     if (loggedIn) {
       if (!cart.includes(id)) {
@@ -105,12 +115,15 @@ function App() {
 
             // />
             <Suspense fallback={<h1>Loading...</h1>}>
-              <HeroLazy
-                category={category}
-                setCategory={setCategory}
-                setDetail={setDetail}
-                notifyMail={notifyMail}
-              />
+              {products.length > 0 && (
+                <HeroLazy
+                  category={category}
+                  setCategory={setCategory}
+                  setDetail={setDetail}
+                  notifyMail={notifyMail}
+                  products={products}
+                />
+              )}
             </Suspense>
           }
         />
