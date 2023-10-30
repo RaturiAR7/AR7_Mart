@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductsPage from "./ProductsPage";
 
-const Hero = ({ category, setCategory, setDetail, notifyMail, products }) => {
+const Hero = ({ setCategory, setDetail, products }) => {
   const navigate = useNavigate();
   const [deal, setDeal] = useState([{}]); ////Deal of the day
   const handleClick = (value) => {

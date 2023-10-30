@@ -50,14 +50,12 @@ const DetailPage = ({ addToCart, orderPlaced, products }) => {
             <p>
               <strong>Price:</strong>₹{product[0].price}
             </p>
-            <Link>
-              <button
-                className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
-                onClick={() => addToCart(product[0])}
-              >
-                Add to cart
-              </button>
-            </Link>
+            <button
+              className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
+              onClick={() => addToCart(product[0])}
+            >
+              Add to cart
+            </button>
             <button
               className='detail-btn border-2 w-32 shadow-lg m-4 hover:bg-gray-200'
               onClick={orderPlaced}

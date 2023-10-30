@@ -15,7 +15,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import Auth from "./Auth";
-import { getDocs, collection, addDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "./config/firebase";
 
 const HeroLazy = lazy(() => import("./Hero"));
@@ -68,14 +76,6 @@ function App() {
       notifyAddToCart();
       navigate("/login");
     }
-  };
-
-  const deleteFromCart = (id) => {
-    const newArr = [];
-    cart.forEach((element) => {
-      if (element !== id) newArr.push(element);
-    });
-    setCart((prev) => newArr);
   };
 
   const notifyAddToCart = () =>
@@ -135,13 +135,7 @@ function App() {
         />
         <Route
           path='/cart/:cartId'
-          element={
-            <Cart
-              deleteFromCart={deleteFromCart}
-              cart={cart}
-              orderPlaced={orderPlaced}
-            />
-          }
+          element={<Cart cart={cart} orderPlaced={orderPlaced} uid={uid} />}
         />
         <Route
           path='/search/:category'
