@@ -1,21 +1,12 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import siteLogo from "./assets/logo-no-background.png";
-const Navbar = ({ category, setCategory, loggedIn, uid }) => {
+const Navbar = ({ loggedIn, uid }) => {
   const [searchValue, setSearchValue] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setSearchValue(e.target.value);
-  };
-  // const cartClickHandler = () => {
-  //   navigate("/cart");
-  // };
-  const menuOnClickHandler = () => {};
-  const onClickHandler = (e) => {
-    e.preventDefault();
-    setCategory((prev) => searchValue);
-    navigate("/search");
   };
   return (
     <nav className='bg-transparent border-y'>
@@ -130,12 +121,11 @@ const Navbar = ({ category, setCategory, loggedIn, uid }) => {
                     onChange={onChangeHandler}
                     className='rounded border-gray-200 border-2 m-2 w-32 md:w-auto'
                   />
-                  <button
-                    className='px-2 h-8 bg-gray-200 border-2 rounded'
-                    onClick={onClickHandler}
-                  >
-                    Go
-                  </button>
+                  <Link to={`/search/${searchValue}`}>
+                    <button className='px-2 h-8 bg-gray-200 border-2 rounded'>
+                      Go
+                    </button>
+                  </Link>
                 </form>
                 <Link to={`/cart/${uid}`}>
                   <div className='cartIcon flex w-8 md:w-16 md:m-4 m-1 hover:scale-110'>

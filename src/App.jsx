@@ -15,15 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import Auth from "./Auth";
-import {
-  getDocs,
-  collection,
-  addDoc,
-  deleteDoc,
-  doc,
-  query,
-  where,
-} from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "./config/firebase";
 
 const HeroLazy = lazy(() => import("./Hero"));
@@ -34,7 +26,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [detail, setDetail] = useState({});
   const [products, setProducts] = useState([]);
   /////React Router
   const navigate = useNavigate();
@@ -112,13 +103,7 @@ function App() {
           element={
             <Suspense fallback={<h1>Loading...</h1>}>
               {products.length > 0 && (
-                <HeroLazy
-                  category={category}
-                  setCategory={setCategory}
-                  setDetail={setDetail}
-                  notifyMail={notifyMail}
-                  products={products}
-                />
+                <HeroLazy notifyMail={notifyMail} products={products} />
               )}
             </Suspense>
           }
@@ -135,7 +120,7 @@ function App() {
         />
         <Route
           path='/cart/:cartId'
-          element={<Cart cart={cart} orderPlaced={orderPlaced} uid={uid} />}
+          element={<Cart orderPlaced={orderPlaced} uid={uid} />}
         />
         <Route
           path='/search/:category'
@@ -151,10 +136,6 @@ function App() {
             />
           }
         />
-        {/* <Route
-          path='/allProducts'
-          element={<ProductsPage setDetail={setDetail} products={products} />}
-        /> */}
         <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='*' element={<h1>404 Page Not Found</h1>} />

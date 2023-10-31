@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProductsPage from "./ProductsPage";
 
-const Hero = ({ setCategory, setDetail, products }) => {
-  const navigate = useNavigate();
+const Hero = ({ products }) => {
   const [deal, setDeal] = useState([{}]); ////Deal of the day
-  const handleClick = (value) => {
-    setCategory(value.toUpperCase()); ///seting Category
-    navigate("/search");
-  };
 
   //////Deal of the day
   useEffect(() => {
@@ -111,7 +106,7 @@ const Hero = ({ setCategory, setDetail, products }) => {
           );
         })}
       </div>
-      <ProductsPage setDetail={setDetail} products={products} />
+      <ProductsPage products={products} />
     </div>
   );
 };

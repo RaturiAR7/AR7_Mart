@@ -8,7 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 
-const Auth = ({ loggedIn, setLoggedIn, setUid }) => {
+const Auth = ({ setLoggedIn, setUid }) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
