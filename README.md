@@ -1,6 +1,6 @@
 # AR7_Mart
 
-AR7 Mart is a full-stack clone of an E-commerce website developed using React.js and firebase. To make it interactive, react-three-fiber the 3D model rendering library is used. Tailwind CSS is used as the CSS library.
+AR7 Mart is a full-stack clone of an E-commerce website developed using React.js and Firebase. To make it interactive, react-three-fiber the 3D model rendering library is used. Tailwind CSS is used as the CSS library.
 
 # Here is the project live link: https://ar7mart.netlify.app
 
@@ -23,7 +23,7 @@ AR7 Mart is a full-stack clone of an E-commerce website developed using React.js
 # Getting Started with this project
 
 1. Clone this project.
-2. Open terminal and write the following command to install all dependencies and libraries. npm install.
+2. Open terminal and write the following command to install all dependencies and libraries.
    `npm install` or `npm i`
 3. Now to run the website on your localhost, run the following command.
    `npm run dev`.
