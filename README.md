@@ -23,7 +23,10 @@ AR7 Mart is a full-stack clone of an E-commerce website developed using React.js
 # Getting Started with this project
 
 1. Clone this project.
-2. Open terminal and write npm install. This will install all dependencies and libraries.
-3. Run command npm run dev.
+2. Open terminal and write the following command to install all dependencies and libraries. npm install.
+   `npm install` or `npm i`
+3. Now to run the website on your localhost, run the following command.
+   `npm run dev`.
 4. A link will appear shortly in the terminal.
-5. CLick on that link to go to the Ecommerce clone on brower.
+5. Left click on that link by holding `ctrl` key.
+6. The website will open in your default browser.
