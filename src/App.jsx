@@ -16,16 +16,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import Auth from "./Auth";
 import { getDocs, collection, addDoc } from "firebase/firestore";
-import { db } from "./config/firebase";
+import { db, auth } from "./config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const HeroLazy = lazy(() => import("./Hero"));
 
 function App() {
   ////States
   const [uid, setUid] = useState("");
-  const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    auth?.currentUser?.email.length > 0 ? true : false
+  );
   const [products, setProducts] = useState([]);
   /////React Router
   const navigate = useNavigate();
@@ -46,6 +48,12 @@ function App() {
   };
   useEffect(() => {
     fetchProducts();
+    onAuthStateChanged(auth, (user) => {
+      const userId = user.uid;
+      setUid(userId);
+      if (userId.length > 0) setLoggedIn(true);
+      else setLoggedIn(false);
+    });
   }, []);
   const addToCart = (item) => {
     if (loggedIn) {
@@ -78,12 +86,7 @@ function App() {
   return (
     <div className='box-border relative'>
       {location.pathname != "/login" && (
-        <Navbar
-          category={category}
-          setCategory={setCategory}
-          loggedIn={loggedIn}
-          uid={uid}
-        />
+        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} uid={uid} />
       )}
       <ToastContainer
         position='top-center'

@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import siteLogo from "./assets/logo-no-background.png";
-const Navbar = ({ loggedIn, uid }) => {
+import { auth } from "./config/firebase";
+import { signOut } from "firebase/auth";
+const Navbar = ({ loggedIn, uid, setLoggedIn }) => {
   const [searchValue, setSearchValue] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setSearchValue(e.target.value);
   };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setLoggedIn(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <nav className='bg-transparent border-y'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -93,13 +104,20 @@ const Navbar = ({ loggedIn, uid }) => {
                 >
                   Contact
                 </NavLink>
-                {!loggedIn && (
+                {!loggedIn ? (
                   <NavLink
                     className='text-gray-800 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium'
                     to='/login'
                   >
                     LogIn
                   </NavLink>
+                ) : (
+                  <button
+                    className='text-gray-800 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium'
+                    onClick={logout}
+                  >
+                    Logout
+                  </button>
                 )}
               </div>
             </div>
