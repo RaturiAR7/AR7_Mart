@@ -48,13 +48,18 @@ function App() {
   };
   useEffect(() => {
     fetchProducts();
-    onAuthStateChanged(auth, (user) => {
-      const userId = user.uid;
-      setUid(userId);
-      if (userId.length > 0) setLoggedIn(true);
-      else setLoggedIn(false);
-    });
   }, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUid(user.uid);
+        setLoggedIn(true);
+      } else {
+        setUid("");
+        setLoggedIn(false);
+      }
+    });
+  }, [loggedIn]);
   const addToCart = (item) => {
     if (loggedIn) {
       addDoc(collection(db, `cart-${uid}`), {

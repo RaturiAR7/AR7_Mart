@@ -6,7 +6,7 @@ import { db } from "./config/firebase";
 const Cart = ({ orderPlaced, uid }) => {
   const { cartId } = useParams();
   const [cart, setCart] = useState([]);
-
+  console.log(uid);
   const getProduct = async () => {
     const arr = [];
     try {
@@ -25,8 +25,9 @@ const Cart = ({ orderPlaced, uid }) => {
     getProduct();
   };
   useEffect(() => {
-    getProduct();
-  }, []);
+    if (uid == "") setCart([]);
+    else getProduct();
+  }, [uid]);
 
   return (
     <div className='cart flex flex-col items-center h-full'>
