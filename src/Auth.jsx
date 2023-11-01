@@ -118,12 +118,6 @@ const Auth = ({ setLoggedIn, setUid }) => {
         >
           Sign In With Google
         </button>
-        <button
-          className='bg-slate-200 hover:bg-slate-300 w-40 h-10 rounded-md mt-10'
-          onClick={logout}
-        >
-          Log Out
-        </button>
         {/* <p className='text-red-600'>{errorMsg}</p> */}
         {/* </form> */}
       </div>

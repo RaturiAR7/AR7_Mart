@@ -10,15 +10,18 @@ const ProductsPage = ({ products }) => {
             <Link to={`/details/${product.pid}`}>
               <div
                 key={product.id}
-                className='productList p-10 flex flex-col justify-center items-center'
+                className='productList p-10 flex flex-col justify-center items-center md:w-72 md:h-96'
               >
                 <img
-                  className='h-1/2 hover:scale-105'
+                  className='h-1/2 hover:scale-125'
                   src={product.image}
                   alt=''
                 />
-                <h2>{product.title}</h2>
-                <h4>{`Price: ${product.price}`}</h4>
+                <h2 className='mt-5'>{product.title}</h2>
+                <h4>
+                  <span className='font-semibold'>Price: </span>
+                  {product.price}
+                </h4>
               </div>
             </Link>
           );
