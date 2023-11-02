@@ -6,7 +6,6 @@ import { db } from "./config/firebase";
 const Cart = ({ orderPlaced, uid }) => {
   const { cartId } = useParams();
   const [cart, setCart] = useState([]);
-  console.log(uid);
   const getProduct = async () => {
     const arr = [];
     try {

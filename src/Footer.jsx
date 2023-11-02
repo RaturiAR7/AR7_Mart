@@ -28,13 +28,6 @@ const Footer = () => {
                 alt=''
               />
             </a>
-            {/* <a href="">
-              <img
-                className="rounded-xl m-1"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png"
-                alt=""
-              />
-            </a> */}
           </div>
         </div>
         <div className='Address pl-10'>

@@ -24,7 +24,6 @@ const HeroLazy = lazy(() => import("./Hero"));
 function App() {
   ////States
   const [uid, setUid] = useState("");
-  const [category, setCategory] = useState("");
   const [loggedIn, setLoggedIn] = useState(
     auth?.currentUser?.email.length > 0 ? true : false
   );

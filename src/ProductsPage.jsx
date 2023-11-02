@@ -7,7 +7,7 @@ const ProductsPage = ({ products }) => {
       <div className='allproducts grid md:grid-cols-4 w-full '>
         {products.map((product) => {
           return (
-            <Link to={`/details/${product.pid}`}>
+            <Link key={product.id} to={`/details/${product.pid}`}>
               <div
                 key={product.id}
                 className='productList p-10 flex flex-col justify-center items-center md:w-72 md:h-96'

@@ -91,7 +91,7 @@ const Hero = ({ products }) => {
       <div className='dealsHero flex flex-col justify-around items-center md:flex-row m-36'>
         {deal.map((product) => {
           return (
-            <Link to={`/details/${product.pid}`}>
+            <Link key={product.id} to={`/details/${product.pid}`}>
               <div
                 className='productList flex flex-col items-center w-64 hover:shadow-lg'
                 key={product.id}

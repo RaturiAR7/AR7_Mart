@@ -14,7 +14,6 @@ const Auth = ({ setLoggedIn, setUid }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  console.log(auth?.currentUser?.email);
   const signIn = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
@@ -53,21 +52,10 @@ const Auth = ({ setLoggedIn, setUid }) => {
       console.error(err);
     }
   };
-  const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
-    }
-  };
   return (
     <div>
       <div className='LoginPage flex flex-col items-center justify-center'>
         <h1 className='text-center text-5xl mt-20 mb-20 md:m-20'>Sign Up</h1>
-        {/* <form
-          autoComplete='off'
-          className='flex flex-col items-center  bg-slate-100 w-96 md:w-1/2 lg:w-1/3 justify-center'
-        > */}
         <div className='name'>
           <label htmlFor='Name'>User Name :</label>
           <input
@@ -118,8 +106,6 @@ const Auth = ({ setLoggedIn, setUid }) => {
         >
           Sign In With Google
         </button>
-        {/* <p className='text-red-600'>{errorMsg}</p> */}
-        {/* </form> */}
       </div>
     </div>
   );

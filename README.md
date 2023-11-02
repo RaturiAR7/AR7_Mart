@@ -2,8 +2,6 @@
 
 AR7 Mart is a full-stack clone of an E-commerce website developed using React.js and Firebase. To make it interactive, react-three-fiber the 3D model rendering library is used. Tailwind CSS is used as the CSS library.
 
-# Here is the project live link: https://ar7mart.netlify.app
-
 # FEATURES
 
 1. Login Page with validation check.
