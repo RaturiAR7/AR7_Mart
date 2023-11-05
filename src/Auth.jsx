@@ -55,7 +55,15 @@ const Auth = ({ setLoggedIn, setUid }) => {
   return (
     <div>
       <div className='LoginPage flex flex-col items-center justify-center'>
-        <h1 className='text-center text-5xl mt-20 mb-20 md:m-20'>Sign Up</h1>
+        <h1 className='text-center text-5xl mt-20 mb-14 md:m-14'>Sign Up</h1>
+        <button
+          className='bg-blue-400  hover:bg-slate-500 w-56 h-10 mt-10 items-center flex text-white'
+          onClick={signInWithGoogle}
+        >
+          <img className='h-8 w-8 m-2' src='./google.png' alt='' />
+          Sign In With Google
+        </button>
+        <p className='mt-10'>OR</p>
         <div className='name'>
           <label htmlFor='Name'>User Name :</label>
           <input
@@ -95,16 +103,10 @@ const Auth = ({ setLoggedIn, setUid }) => {
           />
         </div>
         <button
-          className='bg-slate-200 hover:bg-slate-300 w-28 h-10 rounded-md'
+          className='bg-blue-400 hover:bg-slate-500 w-28 h-10 rounded-md text-white'
           onClick={signIn}
         >
           Log In
-        </button>
-        <button
-          className='bg-slate-200 hover:bg-slate-300 w-40 h-10 rounded-md mt-10'
-          onClick={signInWithGoogle}
-        >
-          Sign In With Google
         </button>
       </div>
     </div>
