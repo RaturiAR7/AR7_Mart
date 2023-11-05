@@ -145,7 +145,7 @@ const Navbar = ({ loggedIn, uid, setLoggedIn }) => {
                     </button>
                   </Link>
                 </form>
-                <Link to={`/cart/${uid}`}>
+                <Link to={loggedIn ? `/cart/${uid}` : "/login"}>
                   <div className='cartIcon flex w-8 md:w-16 md:m-4 m-1 hover:scale-110'>
                     <img
                       className='w-10'
