@@ -4,7 +4,7 @@ AR7 Mart is a full-stack clone of an E-commerce website developed using React.js
 
 # FEATURES
 
-1. Login Page with validation check.
+1. Login Page with Firebase authentication.
 2. Product Details Page.
 3. Product Cart Page.
 4. Contact page with the power of email.js.
