@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { auth, db, googleProvider } from "../src/config/firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -35,6 +31,7 @@ const Auth = ({ setLoggedIn, setUid }) => {
     setPassword("");
   };
   const signInWithGoogle = async () => {
+    console.log("in");
     try {
       const user = await signInWithPopup(auth, googleProvider);
       addDoc(collection(db, "users"), {

@@ -66,45 +66,45 @@ const ContactForm = ({ notifyMail }) => {
       );
   };
   return (
-    <div className="form  md:w-1/3 text-center">
-      <form className="bg-gray-200 h-96 rounded-xl mt-10 ">
-        <label htmlFor="name">Your Name-</label>
+    <div className='form  md:w-1/3 text-center'>
+      <form className='bg-gray-200 h-96 rounded-xl mt-10 '>
+        <label htmlFor='name'>Your Name-</label>
         <input
-          autoComplete="off"
-          type="text"
-          className="w-1/2 border-2 rounded-md m-4 text-center"
-          id="name"
-          name="name"
-          placeholder="Enter Your Name"
+          autoComplete='off'
+          type='text'
+          className='w-1/2 border-2 rounded-md m-4 text-center'
+          id='name'
+          name='name'
+          placeholder='Enter Your Name'
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="email">You Mail ID-</label>
+        <label htmlFor='email'>You Mail ID-</label>
         <input
-          type="text"
-          name="email"
-          autoComplete="off"
-          id="email"
-          className="w-1/2 border-2 rounded-md  m-4 text-center"
-          placeholder="Enter Your Email Id"
+          type='text'
+          name='email'
+          autoComplete='off'
+          id='email'
+          className='w-1/2 border-2 rounded-md  m-4 text-center'
+          placeholder='Enter Your Email Id'
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="message">Your Enquiry</label>
+        <label htmlFor='message'>Your Enquiry</label>
         <br />
         <textarea
-          name="message"
-          id="message"
-          autoComplete="off"
-          cols="20"
-          rows="6"
+          name='message'
+          id='message'
+          autoComplete='off'
+          cols='20'
+          rows='6'
           onChange={handleChange}
         />
         <br />
         <button
-          type="submit"
+          type='submit'
           onClick={handleSubmit}
-          className="bg-slate-500 w-20 rounded-md hover:bg-slate-400"
+          className='bg-slate-500 w-20 rounded-md hover:bg-slate-400'
         >
           Submit
         </button>
