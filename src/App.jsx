@@ -18,6 +18,7 @@ import Auth from "./Auth";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db, auth } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import AddProduct from "./AddProduct";
 
 const HeroLazy = lazy(() => import("./Hero"));
 
@@ -146,6 +147,7 @@ function App() {
         <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='*' element={<h1>404 Page Not Found</h1>} />
+        <Route path='/addpro' element={<AddProduct />} />
       </Routes>
       {location.pathname != "/login" && <Footer />}
     </div>

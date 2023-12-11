@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className='footer h-96 md:h-60 bg-slate-800 absolute w-full overflow-hidden '>
       <h2 className='text-center text-3xl md:text-5xl font-extrabold text-slate-100 '>
-        Ecommerce Website
+        AR7 MART
       </h2>
       <div className='footercontent flex flex-col md:flex-row items-center md:justify-around'>
         <div className='socials flex flex-col'>
