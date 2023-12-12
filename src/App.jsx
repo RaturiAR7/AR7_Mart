@@ -147,7 +147,10 @@ function App() {
         <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='*' element={<h1>404 Page Not Found</h1>} />
-        <Route path='/addpro' element={<AddProduct />} />
+        <Route
+          path='/addpro'
+          element={<AddProduct id={products.length + 1} />}
+        />
       </Routes>
       {location.pathname != "/login" && <Footer />}
     </div>
