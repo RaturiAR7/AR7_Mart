@@ -1,5 +1,19 @@
+import { useState } from "react";
+
 const AddProduct = ({ id }) => {
-  console.log(id);
+  const [productInfo, setProductInfo] = useState({
+    id: id,
+    title: "",
+    description: "",
+    image: "",
+    price: "",
+    category: "",
+  });
+
+  // const productSubmitHandler = () => {
+
+  // };
+
   return (
     <div className='flex flex-col items-center'>
       <h1 className='text-4xl'>Add Product</h1>
@@ -41,26 +55,32 @@ const AddProduct = ({ id }) => {
             Add Product Category
           </label>
           <radioGroup>
-            <label>Laptops</label>
+            <label className='m-2'>Laptops</label>
             <input type='radio' name='category' value='men' />
             <br />
-            <label>Electronics</label>
+            <label className='m-2'>Electronics</label>
             <input type='radio' name='category' value='men' />
             <br />
-            <label>Clothing</label>
+            <label className='m-2'>Clothing</label>
             <input type='radio' name='category' value='men' />
             <br />
-            <label>Sports</label>
+            <label className='m-2'>Sports</label>
             <input type='radio' name='category' value='men' />
             <br />
-            <label>Mobile Phone</label>
+            <label className='m-2'>Mobile Phone</label>
             <input type='radio' name='category' value='men' />
             <br />
-            <label>Jewellery</label>
+            <label className='m-2'>Jewellery</label>
             <input type='radio' name='category' value='men' />
           </radioGroup>
         </div>
       </div>
+      <button
+        className='bg-slate-600 text-white w-20'
+        onClick={productSubmitHandler}
+      >
+        Submit
+      </button>
     </div>
   );
 };
