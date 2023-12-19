@@ -1,25 +1,48 @@
 import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "./config/firebase";
 
-const AddProduct = ({ id }) => {
+const AddProduct = ({ id, fetchProducts }) => {
   const [productInfo, setProductInfo] = useState({
-    id: id,
+    pid: id,
     title: "",
     description: "",
     image: "",
-    price: "",
+    price: 0,
     category: "",
   });
 
   // Function to handle changes in input fields
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "price") {
+      value = Number(value);
+    }
+
     setProductInfo((prevProductInfo) => ({
       ...prevProductInfo,
       [name]: value,
     }));
   };
   const productSubmitHandler = () => {
-    console.log(productInfo);
+    // Add the productInfo object to Firestore
+    addDoc(collection(db, "products"), {
+      pid: id,
+      title: productInfo.title,
+      description: productInfo.description,
+      image: productInfo.image,
+      price: productInfo.price,
+      category: productInfo.category,
+    });
+    console.log("Clicked");
+    // Reset the form after submission
+    setProductInfo({
+      pid: id,
+      title: "",
+      description: "",
+      image: "",
+      category: "",
+    });
   };
 
   return (
@@ -34,6 +57,7 @@ const AddProduct = ({ id }) => {
             type='text'
             className='bg-slate-100 border-2 border-slate-200'
             onChange={handleInputChange}
+            value={productInfo.title}
             name='title'
           />
           <label htmlFor='description' className='md:text-xl md:mt-4 text-lg'>
@@ -46,6 +70,7 @@ const AddProduct = ({ id }) => {
             className='bg-slate-100 border-2 border-slate-200'
             onChange={handleInputChange}
             name='description'
+            value={productInfo.description}
           />
         </div>
         <div className='flex flex-col items-center'>
@@ -56,6 +81,7 @@ const AddProduct = ({ id }) => {
             type='text'
             className='bg-slate-100 border-2 border-slate-200'
             onChange={handleInputChange}
+            value={productInfo.image}
             name='image'
           />
           <label htmlFor='price' className='md:text-xl md:mt-4 text-lg'>
@@ -65,6 +91,7 @@ const AddProduct = ({ id }) => {
             type='text'
             className='bg-slate-100 border-2 border-slate-200'
             onChange={handleInputChange}
+            value={productInfo.price}
             name='price'
           />
           <label htmlFor='category' className='md:text-xl md:mt-4 text-lg'>
