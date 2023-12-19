@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./config/firebase";
 
-const AddProduct = ({ id, fetchProducts }) => {
+const AddProduct = ({ id }) => {
   const [productInfo, setProductInfo] = useState({
     pid: id,
     title: "",
@@ -11,7 +11,6 @@ const AddProduct = ({ id, fetchProducts }) => {
     price: 0,
     category: "",
   });
-
   // Function to handle changes in input fields
   const handleInputChange = (e) => {
     let { name, value } = e.target;

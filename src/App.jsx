@@ -150,12 +150,7 @@ function App() {
         {products.length > 1 && (
           <Route
             path='/addpro'
-            element={
-              <AddProduct
-                id={products.length + 1}
-                fetchProduct={fetchProducts}
-              />
-            }
+            element={<AddProduct id={products.length + 1} />}
           />
         )}
       </Routes>
