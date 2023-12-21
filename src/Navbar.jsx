@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import siteLogo from "./assets/logo-no-background.png";
 import { auth } from "./config/firebase";
 import { signOut } from "firebase/auth";
-const Navbar = ({ loggedIn, uid, setLoggedIn,auth }) => {
+const Navbar = ({ loggedIn, uid, setLoggedIn }) => {
   const [searchValue, setSearchValue] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
@@ -118,7 +118,15 @@ const Navbar = ({ loggedIn, uid, setLoggedIn,auth }) => {
                   >
                     Logout
                   </button>
-                  {auth?.currentUser?.email}
+                )}
+                {auth?.currentUser?.email === "anshulraturi007@gmail.com" ? (
+                  <NavLink to='/addpro'>
+                    <button className='text-gray-800 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium'>
+                      Add Product
+                    </button>
+                  </NavLink>
+                ) : (
+                  ""
                 )}
               </div>
             </div>
