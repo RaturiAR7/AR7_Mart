@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import siteLogo from "./assets/logo-no-background.png";
 import { auth } from "./config/firebase";
 import { signOut } from "firebase/auth";
-const Navbar = ({ loggedIn, uid, setLoggedIn }) => {
+const Navbar = ({ loggedIn, uid, setLoggedIn,auth }) => {
   const [searchValue, setSearchValue] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
@@ -118,6 +118,7 @@ const Navbar = ({ loggedIn, uid, setLoggedIn }) => {
                   >
                     Logout
                   </button>
+                  {auth?.currentUser?.email}
                 )}
               </div>
             </div>

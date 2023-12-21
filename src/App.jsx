@@ -1,7 +1,6 @@
 import "./App.css";
 import "./index.css";
 import Cart from "./Cart";
-import ProductsPage from "./ProductsPage";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import SearchPage from "./SearchResult";
@@ -81,7 +80,6 @@ function App() {
       navigate("/login");
     }
   };
-
   const notifyAddToCart = () =>
     toast(loggedIn ? "Added to cart" : "Log in first!");
   const notifyMail = () =>
@@ -91,7 +89,12 @@ function App() {
   return (
     <div className='box-border relative'>
       {location.pathname != "/login" && (
-        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} uid={uid} />
+        <Navbar
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+          uid={uid}
+          auth={auth}
+        />
       )}
       <ToastContainer
         position='top-center'
@@ -146,13 +149,21 @@ function App() {
         />
         <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
         <Route path='/about' element={<AboutUs />} />
-        <Route path='*' element={<h1>404 Page Not Found</h1>} />
-        {products.length > 1 && (
-          <Route
-            path='/addpro'
-            element={<AddProduct id={products.length + 1} />}
-          />
-        )}
+        <Route
+          path='*'
+          element={
+            <div className='h-screen'>
+              <h1 className='text-5xl text-center m-20'>404 Page Not Found</h1>
+            </div>
+          }
+        />
+        {products.length > 1 &&
+          auth?.currentUser?.email == "anshulraturi007@gmail.com" && (
+            <Route
+              path='/addpro'
+              element={<AddProduct id={products.length + 1} />}
+            />
+          )}
       </Routes>
       {location.pathname != "/login" && <Footer />}
     </div>
