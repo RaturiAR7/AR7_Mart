@@ -26,10 +26,15 @@ const Hero = ({ products }) => {
           </h2>
           <button
             onClick={() => {
-              window.scrollTo({
-                top: 800,
-                behavior: "smooth", // You can change this to 'auto' if you prefer an instant scroll
-              });
+              window.innerWidth > 400
+                ? window.scrollTo({
+                    top: 800,
+                    behavior: "smooth", // You can change this to 'auto' if you prefer an instant scroll
+                  })
+                : window.scrollTo({
+                    top: 300,
+                    behavior: "smooth", // You can change this to 'auto' if you prefer an instant scroll
+                  });
             }}
             className='bg-white p-2 mr-32 md:ml-96 hover:shadow-lg hover:shadow-slate-100 hover:scale-105'
           >

@@ -67,12 +67,12 @@ const DetailPage = ({ addToCart, orderPlaced, products }) => {
         <h2 className='text-center font-extrabold text-4xl m-32'>
           Related Products
         </h2>
-        <div className='grid md:grid-cols-3'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-4'>
           {products.map((element) => {
             if (element.category === product[0].category)
               return (
                 <Link to={`/details/${element.pid}`}>
-                  <div className='relatedProductm-10 items-center flex flex-col hover:shadow-2xl'>
+                  <div className='relatedProductm-10  items-center flex flex-col hover:shadow-2xl'>
                     <img className='w-60 h-60' src={element.image} alt='' />
                     <h2>{element.title}</h2>
                     <h4>{`Price: ₹ ${element.price}`}</h4>

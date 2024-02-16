@@ -4,16 +4,16 @@ const ProductsPage = ({ products }) => {
   return (
     <div className='productsPage text-center w-full'>
       <h1 className='text-5xl font-extrabold mt-4 mb-14'>Products</h1>
-      <div className='allproducts grid md:grid-cols-4 w-full '>
+      <div className='allproducts grid md:grid-cols-4 sm:grid-cols-2 w-full '>
         {products.map((product) => {
           return (
             <Link key={product.id} to={`/details/${product.pid}`}>
               <div
                 key={product.id}
-                className='productList p-10 flex flex-col justify-center items-center md:w-72 md:h-96'
+                className='productList ml-9 p-10 flex flex-col justify-center w-72 items-center md:w-72 md:h-96'
               >
                 <img
-                  className='h-1/2 hover:scale-125'
+                  className='h-52 hover:scale-125'
                   src={product.image}
                   alt=''
                 />

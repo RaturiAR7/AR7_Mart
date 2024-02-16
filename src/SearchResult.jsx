@@ -114,7 +114,7 @@ const SearchPage = ({ products }) => {
             </div>
           </form>
         </div>
-        <div className='grid md:grid-cols-3'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3'>
           {products.map((Element) => {
             if (
               (Element.title.toUpperCase().includes(category.toUpperCase()) ||
