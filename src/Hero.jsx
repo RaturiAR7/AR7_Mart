@@ -92,7 +92,7 @@ const Hero = ({ products }) => {
           </Link>
         </div>
       </div>
-      <h2 className='text-3xl font-extrabold text-center'>Deal of the day</h2>
+      <h2 className='text-3xl font-extrabold text-center'>Random Deals</h2>
       <div className='dealsHero flex flex-col justify-around items-center md:flex-row m-36'>
         {deal.map((product) => {
           return (
