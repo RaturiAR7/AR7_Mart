@@ -32,7 +32,7 @@ const Hero = ({ products }) => {
                     behavior: "smooth", // You can change this to 'auto' if you prefer an instant scroll
                   })
                 : window.scrollTo({
-                    top: 300,
+                    top: 800,
                     behavior: "smooth", // You can change this to 'auto' if you prefer an instant scroll
                   });
             }}
