@@ -49,7 +49,7 @@ const Hero = ({ products }) => {
         Categories
       </h1>
       <div className='categoryContainer'>
-        <div className='categorySection flex flex-col justify-around items-center md:flex-row mb-36'>
+        <div className='categorySection ml-10 justify-center grid md:grid-cols-2 lg:grid-cols-4'>
           <Link to={`/search/MOBILE PHONE`}>
             <div className='categorycard flex m-10 items-center flex-col w-40 h-40 md:w-1/2 '>
               <img
