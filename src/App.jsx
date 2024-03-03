@@ -9,7 +9,6 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Contact from "./Contact";
 import AboutUs from "./AboutUs";
-import LogIn from "./LogIn";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";

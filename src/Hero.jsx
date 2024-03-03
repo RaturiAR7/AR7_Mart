@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductsPage from "./ProductsPage";
+import { motion } from "framer-motion";
+import { SectionWrapper } from "./hoc";
+import { textVariant } from "./Utils/motion";
 
 const Hero = ({ products }) => {
   const [deal, setDeal] = useState([{}]); ////Deal of the day
@@ -21,9 +24,12 @@ const Hero = ({ products }) => {
     <div className='Hero flex flex-col justify-center flex-grow h-full'>
       <div className='heroImgContainer  md:mr-0 w-full bg-fixed flex justify-center items-center'>
         <div className='md:mr-72 mr-2 mt-40 flex flex-col'>
-          <h2 className='text-gray-500 font-semibold text-3xl md:text-5xl font-serif md:mr-10'>
+          <motion.h2
+            variants={textVariant(0)}
+            className='text-gray-500 font-semibold text-3xl md:text-5xl font-serif md:mr-10'
+          >
             End Of Season Sale
-          </h2>
+          </motion.h2>
           <button
             onClick={() => {
               window.innerWidth > 400
@@ -116,4 +122,5 @@ const Hero = ({ products }) => {
   );
 };
 
+// export default SectionWrapper(Hero, "hero");
 export default Hero;
