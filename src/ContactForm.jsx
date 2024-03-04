@@ -1,5 +1,8 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
+import { SectionWrapper } from "./hoc";
+import { slideIn } from "./Utils/motion";
 
 const ContactForm = ({ notifyMail }) => {
   const [form, setForm] = useState({
@@ -66,8 +69,11 @@ const ContactForm = ({ notifyMail }) => {
       );
   };
   return (
-    <div className='form  md:w-1/3 text-center'>
-      <form className='bg-gray-200 h-96 rounded-xl mt-10 '>
+    <motion.div
+      className='w-full h-full text-center'
+      variants={slideIn("left", "spring", 0, 2)}
+    >
+      <form className='bg-gray-200 h-full w-full rounded-xl mt-10 '>
         <label htmlFor='name'>Your Name-</label>
         <input
           autoComplete='off'
@@ -109,8 +115,8 @@ const ContactForm = ({ notifyMail }) => {
           Submit
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
-export default ContactForm;
+export default SectionWrapper(ContactForm, "ContactForm");
