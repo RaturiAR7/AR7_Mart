@@ -1,23 +1,22 @@
 import "./App.css";
 import "./index.css";
-import Cart from "./Cart";
-import Navbar from "./Navbar";
-import { useEffect, useState } from "react";
-import SearchPage from "./SearchResult";
-import DetailPage from "./DetailPage";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import Footer from "./Footer";
-import Contact from "./Contact";
-import AboutUs from "./AboutUs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { lazy, Suspense } from "react";
-import Auth from "./Auth";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db, auth } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import AddProduct from "./AddProduct";
-
+import Loader from "react";
+const Auth = lazy(() => import("./Auth"));
+const Contact = lazy(() => import("./Contact"));
+const AboutUs = lazy(() => import("./AboutUs"));
+const Footer = lazy(() => import("./Footer"));
+const SearchPage = lazy(() => import("./SearchResult"));
+const DetailPage = lazy(() => import("./DetailPage"));
+const Cart = lazy(() => import("./Cart"));
+const Navbar = lazy(() => import("./Navbar"));
+const AddProduct = lazy(() => import("./AddProduct"));
 const HeroLazy = lazy(() => import("./Hero"));
 
 function App() {
@@ -121,33 +120,59 @@ function App() {
         <Route
           path='/login'
           element={
-            <Auth
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
-              setUid={setUid}
-            />
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Auth
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setUid={setUid}
+              />
+            </Suspense>
           }
         />
         <Route
           path='/cart/:cartId'
-          element={<Cart orderPlaced={orderPlaced} uid={uid} />}
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Cart orderPlaced={orderPlaced} uid={uid} />
+            </Suspense>
+          }
         />
         <Route
           path='/search/:category'
-          element={products.length > 0 && <SearchPage products={products} />}
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              {products.length > 0 && <SearchPage products={products} />}
+            </Suspense>
+          }
         />
         <Route
           path='/details/:productId'
           element={
-            <DetailPage
-              addToCart={addToCart}
-              orderPlaced={orderPlaced}
-              products={products}
-            />
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <DetailPage
+                addToCart={addToCart}
+                orderPlaced={orderPlaced}
+                products={products}
+              />
+            </Suspense>
           }
         />
-        <Route path='/contact' element={<Contact notifyMail={notifyMail} />} />
-        <Route path='/about' element={<AboutUs />} />
+        <Route
+          path='/contact'
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Contact notifyMail={notifyMail} />
+            </Suspense>
+          }
+        />
+        <Route
+          path='/about'
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <AboutUs />
+            </Suspense>
+          }
+        />
         <Route
           path='*'
           element={
@@ -160,7 +185,11 @@ function App() {
           auth?.currentUser?.email == "anshulraturi007@gmail.com" && (
             <Route
               path='/addpro'
-              element={<AddProduct id={products.length + 1} />}
+              element={
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <AddProduct id={products.length + 1} />
+                </Suspense>
+              }
             />
           )}
       </Routes>
