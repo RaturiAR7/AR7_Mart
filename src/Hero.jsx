@@ -80,7 +80,7 @@ const Hero = ({ products }) => {
             <div className='categorycard flex m-10 items-center flex-col w-40 h-40 md:w-1/2 '>
               <img
                 className='w-36 h-36 hover:scale-110'
-                src='https://intersport.com.au/wp-content/uploads/U_DN3606_100_V1-550x550.jpg'
+                src='https://rukminim2.flixcart.com/image/612/612/xif0q/ball/z/6/i/50-mercurial-fade-4-10-1-fb2983-103-football-nike-original-imagyq7gpg3phfas.jpeg?q=70'
                 alt='sport'
               />
               <h4>Sports</h4>
@@ -122,5 +122,4 @@ const Hero = ({ products }) => {
   );
 };
 
-// export default SectionWrapper(Hero, "hero");
 export default Hero;
