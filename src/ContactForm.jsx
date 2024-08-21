@@ -73,37 +73,39 @@ const ContactForm = ({ notifyMail }) => {
       className='w-full h-full text-center'
       variants={slideIn("left", "spring", 0, 2)}
     >
-      <form className='bg-gray-200 h-full w-full rounded-xl mt-10 '>
-        <label htmlFor='name'>Your Name-</label>
-        <input
-          autoComplete='off'
-          type='text'
-          className='w-1/2 border-2 rounded-md m-4 text-center'
-          id='name'
-          name='name'
-          placeholder='Enter Your Name'
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor='email'>You Mail ID-</label>
-        <input
-          type='text'
-          name='email'
-          autoComplete='off'
-          id='email'
-          className='w-1/2 border-2 rounded-md  m-4 text-center'
-          placeholder='Enter Your Email Id'
-          onChange={handleChange}
-        />
-        <br />
+      <form className='bg-gray-200 h-full w-full rounded-xl mt-10 flex flex-col gap-5 p-10'>
+        <label htmlFor='name'>
+          Your Name-
+          <input
+            autoComplete='off'
+            type='text'
+            className='w-1/2 border-2 rounded-md m-4 text-center'
+            id='name'
+            name='name'
+            placeholder='Enter Your Name'
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor='email'>
+          You Mail ID-
+          <input
+            type='text'
+            name='email'
+            autoComplete='off'
+            id='email'
+            className='w-1/2 border-2 rounded-md  m-4 text-center'
+            placeholder='Enter Your Email Id'
+            onChange={handleChange}
+          />
+        </label>
         <label htmlFor='message'>Your Enquiry</label>
-        <br />
         <textarea
+          className='px-10'
           name='message'
           id='message'
           autoComplete='off'
           cols='20'
-          rows='6'
+          rows='5'
           onChange={handleChange}
         />
         <br />

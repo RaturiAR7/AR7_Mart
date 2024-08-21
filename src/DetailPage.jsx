@@ -40,7 +40,7 @@ const DetailPage = ({ addToCart, orderPlaced, products }) => {
         <h1 className='text-center font-extrabold text-4xl'>Details Page</h1>
         <div className='flex flex-col md:flex-row justify-evenly m-20'>
           <div className='flex justify-center items-center'>
-            <img className='w-96' src={product[0].image} alt='' />
+            <img className='w-96 h-96' src={product[0].image} alt='' />
           </div>
           <div className='info w-full md:w-1/2 items-center'>
             <h2 className='text-2xl font-bold'>{product[0].title}</h2>
